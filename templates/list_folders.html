@@ -1,0 +1,22 @@
+<!-- myapp/templates/myapp/list_folders.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Folder Contents</title>
+</head>
+<body>
+    <h2>Folder Contents</h2>
+    {% for path, contents in folders.items %}
+        <h3>{{ path }}</h3>
+        <ul>
+            {% for item in contents %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    {% empty %}
+        <p>No folders found.</p>
+    {% endfor %}
+    <br>
+    <a href="{% url 'add_folder' %}">Add Folder</a>
+</body>
+</html>

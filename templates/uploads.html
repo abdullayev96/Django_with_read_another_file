@@ -1,0 +1,18 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Count Files in Folder</title>
+</head>
+<body>
+
+    <h2>Fayl joyini kiriting:</h2>
+    <form action="{% url 'count_files' %}" method="post">
+        {% csrf_token %}
+        <label for="folder">Folder path:</label>
+        <input type="text" id="folder" name="folder" required>
+        <button type="submit">Count Files</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Status</title>
+</head>
+<body>
+    <h1>Files Status</h1>
+    <p>O'qilgan fayllar: {{ approved_count }}</p>
+    <p>O'qilmagan fayllar: {{ not_approved_count }}</p>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in files_info %}
+            <tr>
+                <td>{{ file.name }}</td>
+                <td>{{ file.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

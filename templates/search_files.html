@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Files</title>
+    <script>
+        // JavaScript to populate the file select dropdown
+        function updateFileList(folderPath) {
+            fetch(`/get-files-in-folder/?folder=${folderPath}`)
+                .then(response => response.json())
+                .then(data => {
+                    const fileSelect = document.getElementById('id_file_name');
+                    fileSelect.innerHTML = '';
+                    data.files.forEach(file => {
+                        const option = document.createElement('option');
+                        option.value = file;
+                        option.textContent = file;
+                        fileSelect.appendChild(option);
+                    });
+                });
+        }
+    </script>
+</head>
+<body>
+    <h2>Search Files</h2>
+    <form action="{% url 'search_files' %}" method="post" id="searchForm">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if selected_files %}
+        <h3>Files in Selected Folder</h3>
+        <ul>
+            {% for file in selected_files %}
+                <li>{{ file }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if search_results %}
+        <h3>Search Results</h3>
+        <ul>
+            {% for result in search_results %}
+                <li>{{ result }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,20 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Folder</title>
+</head>
+<body>
+    <h2>Add Folder</h2>
+    <form action="{% url 'add_folder' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Folder</button>
+    </form>
+    <br>
+    <a href="{% url 'search_files' %}">Search Files</a>
+</body>
+</html>
